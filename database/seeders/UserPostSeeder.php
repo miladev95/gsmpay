@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Post;
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Infrastructure\Persistence\Eloquent\Post;
+use App\Infrastructure\Persistence\Eloquent\User;
 use Illuminate\Database\Seeder;
 
 class UserPostSeeder extends Seeder

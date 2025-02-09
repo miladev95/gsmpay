@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Post;
-use App\Models\PostVisit;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Infrastructure\Persistence\Eloquent\Post;
+use App\Infrastructure\Persistence\Eloquent\PostVisit;
 use Illuminate\Database\Seeder;
 
 class PostVisitSeeder extends Seeder

@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\Post;
+use App\Infrastructure\Persistence\Eloquent\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Post>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Infrastructure\Persistence\Eloquent\Post>
  */
 class PostFactory extends Factory
 {
