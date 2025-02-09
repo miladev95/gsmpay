@@ -11,23 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('post_visits', function (Blueprint $table) {
             $table->id();
-            $table->string('username')->unique();
-            $table->string('password');
-            $table->string('profile_photo')->nullable();
-            $table->rememberToken();
+            $table->foreignId('post_id')->constrained()->onDelete('cascade');
+            $table->string('ip_address');
             $table->timestamps();
+
+            $table->unique(['post_id', 'ip_address']);
         });
-
-
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('post_visits');
     }
 };
