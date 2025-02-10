@@ -2,6 +2,7 @@
 
 namespace App\Infrastructure\Persistence\Eloquent;
 
+use Database\Factories\PostModelFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,6 +14,11 @@ class PostModel extends Model
 
     public function visits()
     {
-        return $this->hasMany(PostVisit::class);
+        return $this->hasMany(PostVisitModel::class);
+    }
+
+    protected static function newFactory()
+    {
+        return PostModelFactory::new();
     }
 }

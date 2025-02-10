@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Infrastructure\Persistence\Eloquent\Post;
-use App\Infrastructure\Persistence\Eloquent\PostVisit;
+use App\Infrastructure\Persistence\Eloquent\PostModel;
+use App\Infrastructure\Persistence\Eloquent\PostVisitModel;
 use Illuminate\Database\Seeder;
 
 class PostVisitSeeder extends Seeder
@@ -14,7 +14,7 @@ class PostVisitSeeder extends Seeder
     public function run(): void
     {
         // Loop through all posts and create visits for them
-        Post::all()->each(function ($post) {
+        PostModel::all()->each(function ($post) {
             // Create random visits for each post
             // Ensure unique IP addresses for each post (5 visits per post)
             $visits = collect();
@@ -25,7 +25,7 @@ class PostVisitSeeder extends Seeder
                 // Avoid duplicates for the same post and IP address
                 if (!$visits->contains($ipAddress)) {
                     $visits->push($ipAddress);
-                    PostVisit::create([
+                    PostVisitModel::create([
                         'post_id' => $post->id,
                         'ip_address' => $ipAddress
                     ]);

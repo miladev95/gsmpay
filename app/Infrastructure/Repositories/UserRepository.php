@@ -20,10 +20,10 @@ class UserRepository implements UserRepositoryInterface
         return new User($createdUser->username, $createdUser->password, $createdUser->profile_photo);
     }
 
-    public function findByUsername(string $username): ?User
+    public function findByUsername(string $username): ?UserModel
     {
         $user = UserModel::where('username', $username)->first();
 
-        return $user ? new User($user->username, $user->password, $user->profile_photo) : null;
+        return $user;
     }
 }

@@ -2,16 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Infrastructure\Persistence\Eloquent\User;
+use App\Infrastructure\Persistence\Eloquent\UserModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Infrastructure\Persistence\Eloquent\User>
- */
-class UserFactory extends Factory
+class UserModelFactory extends Factory
 {
-    protected $model = User::class;
+    protected $model = UserModel::class;
 
     public function definition(): array
     {

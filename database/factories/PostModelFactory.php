@@ -2,15 +2,12 @@
 
 namespace Database\Factories;
 
-use App\Infrastructure\Persistence\Eloquent\Post;
+use App\Infrastructure\Persistence\Eloquent\PostModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Infrastructure\Persistence\Eloquent\Post>
- */
-class PostFactory extends Factory
+class PostModelFactory extends Factory
 {
-    protected $model = Post ::class;
+    protected $model = PostModel::class;
 
     public function definition(): array
     {
