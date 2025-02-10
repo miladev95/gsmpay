@@ -11,6 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class UserModel extends Authenticatable
 {
+    protected $primaryKey = 'id';
     protected $table = "users";
     use HasFactory, Notifiable, HasApiTokens;
 
@@ -29,6 +30,11 @@ class UserModel extends Authenticatable
         return [
             'password' => 'hashed',
         ];
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(PostModel::class,'user_id');
     }
 
     protected static function newFactory()

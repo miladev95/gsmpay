@@ -6,8 +6,6 @@ use App\Application\UseCases\CreatePostUseCase;
 use App\Application\UseCases\GetUserPostsUseCase;
 use App\Application\UseCases\ShowPostUseCase;
 use App\Application\UseCases\VisitPostUseCase;
-use App\Domain\Repositories\PostRepositoryInterface;
-use App\Infrastructure\Persistence\Eloquent\PostModel;
 use App\Interfaces\Requests\CreatePostRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -33,7 +31,7 @@ class PostController
     public function getUserPosts(Request $request): JsonResponse
     {
         $userId = auth()->id();
-        $perPage = $request->input('paginate', 10);
+        $perPage = $request->input('perPage', 10);
         $posts = $this->getUserPostsUseCase->execute($userId,$perPage);
         return response()->json($posts);
     }

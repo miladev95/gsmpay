@@ -26,4 +26,19 @@ class UserRepository implements UserRepositoryInterface
 
         return $user;
     }
+
+    public function getUsersOrderedByPostVisits(int $perPage)
+    {
+        return UserModel::withSum('posts', 'visit_count')
+            ->orderByDesc('posts_sum_visit_count')
+            ->paginate($perPage);
+    }
+
+    public function updateProfilePhoto(int $userId, string $profilePhotoPath)
+    {
+        $user = UserModel::findOrFail($userId);
+        $user->profile_photo = $profilePhotoPath;
+        $user->save();
+        return $user;
+    }
 }
