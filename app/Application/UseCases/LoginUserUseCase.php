@@ -6,7 +6,7 @@ use App\Domain\Repositories\UserRepositoryInterface;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
-class AuthenticateUserUseCase
+class LoginUserUseCase
 {
     public function __construct(private UserRepositoryInterface $userRepository) {}
 
@@ -18,7 +18,6 @@ class AuthenticateUserUseCase
             return null; // Authentication failed
         }
 
-        // Generate Sanctum token
         return $user->createToken('auth_token')->plainTextToken;
     }
 }
