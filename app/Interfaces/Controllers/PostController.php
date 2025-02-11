@@ -6,6 +6,7 @@ use App\Application\UseCases\CreatePostUseCase;
 use App\Application\UseCases\GetUserPostsUseCase;
 use App\Application\UseCases\ShowPostUseCase;
 use App\Application\UseCases\VisitPostUseCase;
+use App\Helpers\ResponseHelper;
 use App\Interfaces\Requests\CreatePostRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -25,7 +26,8 @@ class PostController
     {
         $userId = auth()->id();
         $post = $this->createPostUseCase->execute($request->title, $request->text, $userId);
-        return response()->json(['message' => 'Post created successfully', 'post' => $post], 201);
+
+        return ResponseHelper::success(['post' => $post], 201);
     }
 
     public function getUserPosts(Request $request): JsonResponse
@@ -33,7 +35,7 @@ class PostController
         $userId = auth()->id();
         $perPage = $request->input('perPage', 10);
         $posts = $this->getUserPostsUseCase->execute($userId,$perPage);
-        return response()->json($posts);
+        return ResponseHelper::success($posts);
     }
 
     public function show(Request $request, $id): JsonResponse
@@ -42,9 +44,9 @@ class PostController
         $post = $this->showPostUseCase->execute($id);
 
         if (!$post) {
-            return response()->json(['message' => 'Post not found'], 404);
+            return ResponseHelper::error('Post not found', 404);
         }
 
-        return response()->json(['post' => $post]);
+        return ResponseHelper::success($post);
     }
 }

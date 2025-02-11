@@ -4,6 +4,7 @@ namespace App\Interfaces\Controllers;
 
 use App\Application\UseCases\LoginUserUseCase;
 use App\Application\UseCases\RegisterUserUseCase;
+use App\Helpers\ResponseHelper;
 use App\Interfaces\Requests\LoginRequest;
 use App\Interfaces\Requests\RegisterRequest;
 use Illuminate\Http\Request;
@@ -24,7 +25,7 @@ class AuthController
             return response()->json(['error' => 'Invalid credentials'], 401);
         }
 
-        return response()->json(['token' => $token]);
+        return ResponseHelper::success(['token' => $token]);
     }
 
 
@@ -38,6 +39,6 @@ class AuthController
             $profilePhoto
         );
 
-        return response()->json(['message' => 'User registered successfully', 'user' => $user], 201);
+        return ResponseHelper::success(['user' => $user], 201);
     }
 }
